@@ -43,6 +43,9 @@
         return;
     }
 
+	// Prevents crashes when other sound libraries are competing in the same app
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+
     self.recognitionRequest = [[SFSpeechAudioBufferRecognitionRequest alloc] init];
 
     if (self.recognitionRequest == nil){
