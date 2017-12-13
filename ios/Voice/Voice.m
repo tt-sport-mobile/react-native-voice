@@ -159,7 +159,12 @@
 
 RCT_EXPORT_METHOD(stopSpeech:(RCTResponseSenderBlock)callback)
 {
+    [self.recognitionTask cancel];
     [self.recognitionTask finish];
+    [self.audioEngine stop];
+    [self.audioEngine reset];
+    [self.audioEngine.inputNode removeTapOnBus:0];
+    [self.recognitionRequest endAudio];
     callback(@[@false]);
 }
 
